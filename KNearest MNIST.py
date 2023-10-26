@@ -46,17 +46,22 @@ def KNearest(input, k) -> int:
     counts = np.bincount(label_list)
     return np.argmax(counts)
 
-def test():
-    test_list = random.sample(range(len(mnist_test)), 50)
+
+def test(k):
+    num_tests = 50
+    #k = 4      #k5 = .889, k7.859, k4 = .886
+    test_list = random.sample(range(len(mnist_test)), num_tests)
     correct = 0
     for index in test_list:
         image, label = mnist_test[index]
-        if KNearest(image, 1) == label:
-            print("correct")
+        if KNearest(image, k) == label:
+            #print("correct")
             correct += 1
         else:
-            print("urdumb")
-    print(correct/50)
+            pass
+            #print("urdumb")
+    print((correct/num_tests*100))
 
 
-test()
+
+test(3)
